@@ -18,8 +18,8 @@ export default function Home() {
         {produtos.map((p, idx) => (
           <div key={idx} style={{border:'1px solid #ddd',borderRadius:6,padding:12}}>
             {p.imagem && p.imagem !== 'N/A' ? (
-              // Use <img> para simplicidade (Image exigiria configuração)
-              <img src={p.imagem} alt={p.nome || ''} style={{width:'100%',height:180,objectFit:'cover',borderRadius:4}} />
+              // Carrega via proxy para contornar hotlink/referrer blocking em hosts externos
+              <img src={`/api/proxy?u=${encodeURIComponent(p.imagem)}`} alt={p.nome || ''} style={{width:'100%',height:180,objectFit:'cover',borderRadius:4}} />
             ) : (
               <div style={{width:'100%',height:180,background:'#f0f0f0',display:'flex',alignItems:'center',justifyContent:'center'}}>Sem imagem</div>
             )}
